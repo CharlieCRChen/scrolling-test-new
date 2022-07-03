@@ -430,7 +430,7 @@ function isTargetInGreyArea() {
             // location.href='./result.html';
             if (mode=='demo'){
                 sendData2GoogleSheet(data);
-                location.href='./info.html';
+                //location.href='./info.html';
             }
             else {
                 openPop(popend);
