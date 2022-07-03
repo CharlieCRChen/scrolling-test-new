@@ -574,11 +574,11 @@ function sendData2GoogleSheet(data){
     }
     //save to google sheet
     //change the url
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxaRnzali4Gho3O-6Gqfx03Faca2nnAI4bYeeZSnON2QGN7MUN-rjZYySwfCT3NQfzU/exec?action=addData"
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxnZV4oYrW8P26yboKcZPq7AagYajHnbM7w0Ax-ClOM9tqJGOdcY0hBoLXHuNaXeX3AtA/exec?action=addData"
     fetch(scriptURL, { 
         method: 'POST', 
         headers: {
-            'Content-Type': 'text/plain'
+            'Content-Type': 'text/plain;charset=UTF-8'
         },
         body: JSON.stringify(data4json)
     })
