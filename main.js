@@ -575,7 +575,15 @@ function sendData2GoogleSheet(data){
     //save to google sheet
     //change the url
     const scriptURL = "https://script.google.com/macros/s/AKfycbxcTX3V7e4gSuz00FdZBCS3L-zNdBVYaOC_0RN41Gyn-p9_7bwR6OIY7mMTm4k2rKlDbA/exec?action=addData"
-    fetch(scriptURL, { method: 'POST', body: JSON.stringify(data4json)})
+    fetch(scriptURL, { 
+        method: 'POST',
+        mode: 'cors',  
+        headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify(data4json)
+    })
 }
 
 
