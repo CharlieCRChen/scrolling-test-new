@@ -41,10 +41,10 @@ if (mode=="formal"){
     grey_area_height_ratio = [1, 1.5, 2, 2.5, 3];
 }
 
-// grey_area_height_ratio = grey_area_height_ratio
-//     .map(value => ({ value, sort: Math.random() }))
-//     .sort((a, b) => a.sort - b.sort)
-//     .map(({ value }) => value);
+grey_area_height_ratio = grey_area_height_ratio
+    .map(value => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
 
 var shuffled1 = unshuffled
   .map(value => ({ value, sort: Math.random() }))
@@ -90,7 +90,7 @@ var popswitch  = document.getElementById('pop-switch');
 var popend = document.getElementById('pop-end');
 var grey_mask = document.getElementById('grey_mask');
 var weight_round = 0;
-var ratio = 0;
+var ratio = NaN;
 
 // get target area height
 // var info_data = JSON.parse(sessionStorage.getItem("info"));
@@ -100,7 +100,6 @@ var ratio = 0;
 
 // display mask and pop up window
 showGreyMask();
-console.log(poptutorial);
 openPop(poptutorial);
 
 
@@ -139,14 +138,12 @@ var pre_y = distance;
 function setGreyArea() {
     d3.select("#grey_area")
     .style("height",function(){
-        ratio = grey_area_height_ratio[weight_round];
         grey_area_size = (Math.round(d3.selectAll(".star")._groups[0][0].getBoundingClientRect().height)+15);
         return grey_area_height_ratio[weight_round] * grey_area_size  +"px"
     })
     //set grey area at the center of the svg container
     .style("top", function(){
-        // console.log(document.getElementById("svg-container").offsetWidth / 2);
-        return Math.round(document.getElementById("svg-container").offsetWidth - grey_area_height_ratio[weight_round] * grey_area_size) / 2 + "px";
+        return (document.getElementById("svg-container").offsetWidth - grey_area_height_ratio[weight_round] * grey_area_size) / 2 + $(".container-fluid")[0].clientHeight + "px";
     })
 }
 setGreyArea();
@@ -403,6 +400,7 @@ function isTargetInGreyArea() {
     var grey_area_top = $("#grey_area")[0].offsetTop;
     var grey_area_height = $("#grey_area")[0].clientHeight;
     var valid_interval = grey_area_height-star_height;
+    ratio = grey_area_height_ratio[weight_round];
 
     //console.log(y, grey_area_top, grey_area_top+valid_interval, document.getElementById("star4"));
 
@@ -430,7 +428,7 @@ function isTargetInGreyArea() {
             // location.href='./result.html';
             if (mode=='demo'){
                 sendData2GoogleSheet(data);
-                //location.href='./info.html';
+                location.href='./info.html';
             }
             else {
                 openPop(popend);
@@ -450,7 +448,8 @@ function isTargetInGreyArea() {
 
         if (shuffled1.length == 0 && SHOW_STAR == false && weight_round < grey_area_height_ratio.length-1){
             shuffled1 = getNewShuffledArray();
-            weight_round += 1
+            
+            weight_round += 1;
             setGreyArea();
         }
 
@@ -464,12 +463,14 @@ function isTargetInGreyArea() {
             openPop(popswitch);
             reset = true;
             d3.selectAll(".num").text(1);
+            
             weight_round = 0;
             setGreyArea();
         }
         if (shuffled1.length == 0 && SHOW_STAR == true && weight_round < grey_area_height_ratio.length-1){
             shuffled1 = getNewShuffledArray();
-            weight_round += 1
+            
+            weight_round += 1;
             setGreyArea();
         }
         if (shuffled1.length > 0){
@@ -518,6 +519,7 @@ function update(round,start_time, mouse_trace_back,insert_symbol_line, max_backt
         console.log("Trace back times: "+ parseInt(mouse_trace_back));
         console.log("Cumulative Distance: "+ parseInt(cum_distance));
         console.log("Max Back Tracking Distance: "+ parseInt(max_backtracking_distance));
+        console.log("Ratio: "+ ratio);
 
         data["round"].push(round);
         data["time"].push(parseInt(timeSpent));
@@ -528,7 +530,7 @@ function update(round,start_time, mouse_trace_back,insert_symbol_line, max_backt
         data["ratio"].push(ratio);
 
         cum_distance = 0;
-        console.log("update round:"+(round));
+        ratio = NaN;
 
         return round
     }
