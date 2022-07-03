@@ -577,7 +577,7 @@ function sendData2GoogleSheet(data){
     const scriptURL = "https://script.google.com/macros/s/AKfycbxcTX3V7e4gSuz00FdZBCS3L-zNdBVYaOC_0RN41Gyn-p9_7bwR6OIY7mMTm4k2rKlDbA/exec?action=addData"
     fetch(scriptURL, { 
         method: 'POST',
-        mode: 'cors',  
+        mode: 'no-cors',  
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
