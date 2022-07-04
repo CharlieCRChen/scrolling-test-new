@@ -1,6 +1,13 @@
 var inputArray = [false, false, false];
 var ans1 = 0, ans2 = 0, ans3 = 0;
 
+$( document ).ready(function(){
+    if (($("input[name='q1']:checked").val() == 1) && ($("input[name='q2']:checked").val() == 1) && ($("input[name='q3']:checked").val() == 1)){
+        inputArray = [true, true, true];
+        enableBtn(inputArray);
+    }
+})
+
 $(".q1").on("change", function(){
     ans1 = $("input[name='q1']:checked").val();
     if (ans1 == 1){
