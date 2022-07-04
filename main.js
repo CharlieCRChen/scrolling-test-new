@@ -17,6 +17,7 @@
 
 
 // Main
+
 // 1. get which mode: demo or formal
 var mode = getQueryVariable("mode")
 var info_data = JSON.parse(sessionStorage.getItem("info"))
@@ -427,8 +428,20 @@ function isTargetInGreyArea() {
             sessionStorage.setItem("scrolling_data", data);
             // location.href='./result.html';
             if (mode=='demo'){
-                sendData2GoogleSheet(data);
-                location.href='./info.html';
+                // sendData2GoogleSheet(data);
+                // location.href='./info.html';
+                openPop(popend);
+                $("#btn-back").click(function(){
+                    sendData2GoogleSheet(data);
+                    closePop(popend);
+                    location.href='./info.html';
+                })
+                $("#btn-questionnaire").click(function(){
+                    window.open("https://forms.gle/ob1KexoruTXrjZYy9");
+                    sendData2GoogleSheet(data);
+                    closePop(popend);
+                    location.href='./info.html';
+                })
             }
             else {
                 openPop(popend);
@@ -438,7 +451,7 @@ function isTargetInGreyArea() {
                     location.href='./info.html';
                 })
                 $("#btn-questionnaire").click(function(){
-                    window.open("https://forms.gle/noY1WbgraDN6LXPt9");
+                    window.open("https://forms.gle/ob1KexoruTXrjZYy9");
                     sendData2GoogleSheet(data);
                     closePop(popend);
                     location.href='./info.html';
