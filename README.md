@@ -12,11 +12,13 @@ The goal is to land the stars or certain line into the grey area as QUICKLY and 
 3. Create a new App Script in your sheet
 
 ### Install this tool
-First, you can use git clone or download the zip file and unzip it in your server.
+First, you can use git clone or download it as a zip file and unzip it in your server.
 
 ### Set up your own google sheet
 In your own Google Sheet, enter the column name of your data 
-(ParticipantID, Scrolling_Technique, Level_of_Experience, Mode, Autoswitch, Round	Time (ms), Target_Line, Num_Switchbacks, Cumulative_Distance_(px), Max_Back_Track_Distance_(px), Ratio, Date)
+```
+ParticipantID, Scrolling_Technique, Level_of_Experience, Mode, Autoswitch, Round	Time (ms), Target_Line, Num_Switchbacks, Cumulative_Distance_(px), Max_Back_Track_Distance_(px), Ratio, Date
+```
 and then make it public by following the publishing steps below:
 
 1. Click File > Publish to the web
@@ -63,7 +65,8 @@ function addData (e) {
                     data4sheet1[i]["Round"],data[i]["Time_(ms)"],data4sheet1[i]["Target_Line"],
                     data4sheet1[i]["Num_Switchbacks"],data4sheet1[i]["Cumulative_Distance_(px)"],
                     data4sheet1[i]["Max_Back_Track_Distance_(px)"],
-                    data4sheet1[i]["Ratio"]
+                    data4sheet1[i]["Ratio"],
+                    data4sheet1[i]["Date"]
                   ]);
   }
   return ContentService.createTextOutput("SUCCESS").setMimeType(ContentService.MimeType.TEXT);
