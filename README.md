@@ -1,8 +1,16 @@
 # Scrolling Test Tool
 
-This scrolling test was developed by Chaoran Chen for the CMU HCII class [05-440/640: Interaction Techniques]("https://www.cs.cmu.edu/~bam/uicourse/05440inter2022/"), Spring, 2022.
+This scrolling test was developed by Chaoran Chen and Brad Myers for the CMU HCII class [05-440/640: Interaction Techniques]("https://www.cs.cmu.edu/~bam/uicourse/05440inter2022/"), Spring, 2022.
 
-The goal is to land the stars or certain line into the grey area as QUICKLY and as ACCURATELY as possible. At the end of the test, you will be able to obtain your result in our [Google Sheet](https://docs.google.com/spreadsheets/d/1IFnbDxDevUu4e9yBf4bvp2ftLrxqFBydhNRS9CWxw6M/edit?usp=sharing).
+The goal is to explore creating a standardized test for scrolling, that will work on any device that can view a webpage. The key requirement was to avoid the need to click, as required by all other scrolling tests, since for some tasks like reading, no clicking is needed when scrolling. Also we found that the difficulty of clicking accurately was dominating the times on smartphones, so it wasn't really testing the scrolling speed.
+
+There are 2 phases of tests - in one, which models scrolling to an unknown place, so the user must do a visual search while scrolling, the goal is to land the stars or certain line into the grey area as QUICKLY and as ACCURATELY as possible. In the second phase, which models going to a known place, the user is told which line to scroll to. In each phase, the user must scroll various lengths, ranging from a few lines to all the way to the end of the page, which is about 99 rows of graphics, where each row is about the size of 3 lines of text (so the document is about 300 lines of text tall).
+
+At the end of the test, the current code puts all the results into our [Google Sheet](https://docs.google.com/spreadsheets/d/1IFnbDxDevUu4e9yBf4bvp2ftLrxqFBydhNRS9CWxw6M/edit?usp=sharing).
+
+You are welcome to use this test as-is, and check the results in our Google Sheet, or else to adapt it as desired to your needs. We hope to eventually have a publication about this test, but for now, please cite us as:
+
+Chaoran Chen and Brad A Myers, "Scrolling Test Software", 2022, https://github.com/CharlieCRChen/scrolling-test-new/ 
 
 
 ## How to use it
