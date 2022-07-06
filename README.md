@@ -17,7 +17,7 @@ First, you can use git clone or download it as a zip file and unzip it in your s
 ### Set up your own google sheet
 In your own Google Sheet, enter the column name of your data 
 ```
-ParticipantID, Scrolling_Technique, Level_of_Experience, Mode, Autoswitch, Round	Time (ms), Target_Line, Num_Switchbacks, Cumulative_Distance_(px), Max_Back_Track_Distance_(px), Ratio, Date
+ParticipantID, Scrolling_Technique, Level_of_Experience, Mode, Autoswitch, Round, Time (ms), Target_Line, Num_Switchbacks, Cumulative_Distance_(px), Max_Back_Track_Distance_(px), Ratio, Date
 ```
 and then make it public by following the publishing steps below:
 
@@ -42,7 +42,7 @@ And that's all the Sheet setup work done!
 In your google sheet, your should create a App Script to allow it receive the data from this tool by following the steps below:
 
 1. Click Extension > App Script
-2. Paste the following code to your new script. **Remember to replace url and sheet with yours**.
+2. Paste the following code to your new script. **Remember to replace the url and sheet variables in the code with yours**.
 ```
 var url = SpreadsheetApp.openByUrl("CHANGE TO YOUR GOOGLE SHEET URL");
 var sheet = url.getSheetByName('YOUR SHEET NAME');
