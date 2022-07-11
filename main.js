@@ -33,14 +33,22 @@ sessionStorage.setItem("info", JSON.stringify(info_data));
 var autoswitch = info_data["autoswitch"];
 
 // 2. set the target line and shuffle them
-var unshuffled = [10,20];
-if (mode=="formal"){ unshuffled = [7, 8, 9, 10, 19, 29, 39, 49, 59, 69, 79, 89, 98]; } //, 7, 8, 9, 10, 19, 29, 39, 49, 59, 69, 79, 89, 98];} //consider step as 5? test the time
+var unshuffled = [10, 98];
+var unshuffled2 = [7, 8, 9, 10, 19, 29, 39, 49, 59, 69, 79, 89, 98];
 
 // 2.5 set different range of target area
 var grey_area_height_ratio = [1,2];
+var grey_area_height_ratio2 = [1, 1.5, 2, 2.5, 3]; 
+
+$("#trial_num_demo").text(unshuffled.length * grey_area_height_ratio.length * 2);
+
+if (mode=="formal"){ unshuffled = unshuffled2 } //, 7, 8, 9, 10, 19, 29, 39, 49, 59, 69, 79, 89, 98];} //consider step as 5? test the time
 if (mode=="formal"){
-    grey_area_height_ratio = [1, 1.5, 2, 2.5, 3];
+    grey_area_height_ratio = grey_area_height_ratio2;
 }
+
+// change trial_num
+$("#trial_num_formal").text(unshuffled2.length * grey_area_height_ratio2.length * 2);
 
 // grey_area_height_ratio = grey_area_height_ratio
 //     .map(value => ({ value, sort: Math.random() }))
