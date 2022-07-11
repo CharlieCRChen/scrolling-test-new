@@ -622,5 +622,25 @@ function sendData2GoogleSheet(data){
     })
 }
 
+//40: arrow down; 38: arrow up
+$(document).keydown(function(event){
+    // var scroll = $('#svg-container').scrollTop();
+    // var increment = 30;
+    // if (event.keyCode == 40){
+    //     scroll = scroll + increment;
+    //     $('#svg-container').scrollTop(scroll)
+    // }
+    // if (event.keyCode == 38){
+    //     scroll = scroll - increment;
+    //     $('#svg-container').scrollTop(scroll)
+    // }
+    if (event.keyCode == 38 || event.keyCode == 40){
+        console.log('xxx');
+        document.getElementById("svg-container").scrollIntoView();
+    }
+});
+
+
+
 
 
