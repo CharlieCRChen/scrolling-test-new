@@ -39,7 +39,7 @@ if (mode=="formal"){ unshuffled = [7, 8, 9, 10, 19, 29, 39, 49, 59, 69, 79, 89, 
 // 2.5 set different range of target area
 var grey_area_height_ratio = [1,2];
 if (mode=="formal"){
-    grey_area_height_ratio = [1, 2, 3];
+    grey_area_height_ratio = [1, 1.5, 2, 2.5, 3];
 }
 
 // grey_area_height_ratio = grey_area_height_ratio
@@ -81,7 +81,7 @@ var mouse_trace_back = 0;
 var direction = -1; //-1: scroll down, +1: scroll up
 var cum_distance = 0;
 var max_backtracking_distance=0;
-var data = { "round":[], "time":[], "target":[], "traceback":[], "cumDistance":[], "maxbacktrack":[], "ratio":[]}
+var data = { "round":[], "time":[], "target":[], "traceback":[], "cumDistance":[], "maxbacktrack":[], "ratio":[], "datetime":[]}
 var topValue = 0;
 var interval = null; 
 var START_FLAG = false;
@@ -526,6 +526,15 @@ function update(round,start_time, mouse_trace_back,insert_symbol_line, max_backt
         var end= parseInt(performance.now());
         var timeSpent= end-start_time;
         mouse_trace_back = Math.max(0,mouse_trace_back);
+
+        var currentdate = new Date(); 
+        var date =  currentdate.getDate() + "/"
+                        + (currentdate.getMonth()+1)  + "/" 
+                        + currentdate.getFullYear() + " "  
+                        + currentdate.getHours() + ":"  
+                        + currentdate.getMinutes() + ":" 
+                        + currentdate.getSeconds();
+
         console.log("Round: "+ round);
         console.log("Time: "+ timeSpent);
         console.log("Line index: "+ insert_symbol_line);
@@ -533,6 +542,7 @@ function update(round,start_time, mouse_trace_back,insert_symbol_line, max_backt
         console.log("Cumulative Distance: "+ parseInt(cum_distance));
         console.log("Max Back Tracking Distance: "+ parseInt(max_backtracking_distance));
         console.log("Ratio: "+ ratio);
+        console.log("Date: "+ date);
 
         data["round"].push(round);
         data["time"].push(parseInt(timeSpent));
@@ -541,6 +551,7 @@ function update(round,start_time, mouse_trace_back,insert_symbol_line, max_backt
         data["cumDistance"].push(parseInt(cum_distance));
         data["maxbacktrack"].push(parseInt(max_backtracking_distance));
         data["ratio"].push(ratio);
+        data["datetime"].push(date);
 
         cum_distance = 0;
         ratio = NaN;
@@ -574,6 +585,8 @@ function sendData2GoogleSheet(data){
     var finaldata = JSON.parse(data);
     var round,time,target,traceback,cumDis,maxBacktrack;
 
+    
+
     for (var i=0; i<finaldata["round"].length;i++){
         round = finaldata["round"][i];
         time = finaldata["time"][i];
@@ -581,15 +594,17 @@ function sendData2GoogleSheet(data){
         traceback = finaldata["traceback"][i];
         cumDis = finaldata["cumDistance"][i];
         maxBacktrack = finaldata["maxbacktrack"][i];
-        ratio = finaldata["ratio"][i]
+        ratio = finaldata["ratio"][i];
+        datetime = finaldata["datetime"][i]
         data4json.push({ "ParticipantID":info_data["id"], "Scrolling_Technique":info_data["tech"], "Level_of_Experience":info_data["exp"].split("=")[0], 
-                        "Mode":info_data["mode"], "Autoswitch":info_data["autoswitch"],
+                        "Mode":info_data["mode"], "Autoswitch":info_data["autoswitch"], "IP":info_data["ip"], "Detail":info_data["detail"],
                         "Round":round, "Time_(ms)":time, "Target_Line": target, "Num_Switchbacks": traceback,
-                        "Cumulative_Distance_(px)":cumDis, "Max_Back_Track_Distance_(px)":maxBacktrack, "Ratio":ratio});
+                        "Cumulative_Distance_(px)":cumDis, "Max_Back_Track_Distance_(px)":maxBacktrack, "Ratio":ratio, "Date": datetime});
     }
+    console.log(data4json);
     //save to google sheet
     //change the url
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxnZV4oYrW8P26yboKcZPq7AagYajHnbM7w0Ax-ClOM9tqJGOdcY0hBoLXHuNaXeX3AtA/exec?action=addData"
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzEH4zciZTZu8DW_aWyi1Q8xBUtFANR-hGi89M1BfUFLJz88Q5q_F_FzgcF6V8HoSeOiw/exec?action=addData"
     fetch(scriptURL, { 
         method: 'POST', 
         headers: {
