@@ -1,6 +1,6 @@
 # Scrolling Test Tool
 
-This scrolling test was developed by Chaoran Chen and Brad Myers for the CMU HCII class [05-440/640: Interaction Techniques]("https://www.cs.cmu.edu/~bam/uicourse/05440inter2022/"), Spring, 2022.
+This scrolling test was developed by Chaoran Chen and Brad Myers for the CMU HCII class [05-440/640: Interaction Techniques]("https://www.cs.cmu.edu/~bam/uicourse/05440inter2022/"), Spring, 2022. The DESIGN for the tools and the software implements were contributed by Brad Myers, Carnegie Mellon University, and based on a class project by Cem Ergin, Emily Porat, Sijia Li, and Chun Wang. 
 
 The goal is to explore creating a standardized test for scrolling, that will work on any device that can view a webpage. The key requirement was to avoid the need to click, as required by all other scrolling tests, since for some tasks like reading, no clicking is needed when scrolling. Also we found that the difficulty of clicking accurately was dominating the times on smartphones, so it wasn't really testing the scrolling speed.
 

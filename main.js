@@ -50,10 +50,10 @@ if (mode=="formal"){
 // change trial_num
 $("#trial_num_formal").text(unshuffled2.length * grey_area_height_ratio2.length * 2);
 
-// grey_area_height_ratio = grey_area_height_ratio
-//     .map(value => ({ value, sort: Math.random() }))
-//     .sort((a, b) => a.sort - b.sort)
-//     .map(({ value }) => value);
+grey_area_height_ratio = grey_area_height_ratio
+    .map(value => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
 
 var shuffled1 = unshuffled
   .map(value => ({ value, sort: Math.random() }))
@@ -206,6 +206,7 @@ $("#btn-start").click(function(){
     is_timer_start = true;
     // reset cumulative distance
     cum_distance=0;
+    document.getElementById("svg-container").focus();
 })
 
 // 9. set the onscroll event in the svg container
@@ -622,23 +623,7 @@ function sendData2GoogleSheet(data){
     })
 }
 
-//40: arrow down; 38: arrow up
-$(document).keydown(function(event){
-    // var scroll = $('#svg-container').scrollTop();
-    // var increment = 30;
-    // if (event.keyCode == 40){
-    //     scroll = scroll + increment;
-    //     $('#svg-container').scrollTop(scroll)
-    // }
-    // if (event.keyCode == 38){
-    //     scroll = scroll - increment;
-    //     $('#svg-container').scrollTop(scroll)
-    // }
-    if (event.keyCode == 38 || event.keyCode == 40){
-        console.log('xxx');
-        document.getElementById("svg-container").scrollIntoView();
-    }
-});
+
 
 
 
